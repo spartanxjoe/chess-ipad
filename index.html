@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Chess" />
+  <meta name="theme-color" content="#12141a" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Chess</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1>Chess</h1>
+        <div id="status" class="status">White to move</div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="btnSettings" aria-label="Settings">&#9881;</button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <div class="board-wrap">
+        <div id="board" class="board" aria-label="Chessboard"></div>
+        <div id="thinking" class="think-bar" aria-hidden="true"></div>
+      </div>
+    </main>
+    <div class="portrait-caps">
+      <div id="capsBlackMini" class="caps"></div>
+      <div id="capsWhiteMini" class="caps"></div>
+    </div>
+
+    <aside class="side">
+      <div class="panel">
+        <div id="capsBlack" class="caps"></div>
+        <div id="sideStatus" class="status"></div>
+        <div id="capsWhite" class="caps"></div>
+      </div>
+      <div class="panel moves" id="moves"></div>
+    </aside>
+
+    <footer class="toolbar">
+      <div class="cluster">
+        <button class="btn" id="btnNew">New</button>
+        <button class="btn" id="btnUndo">Undo</button>
+      </div>
+      <div class="cluster">
+        <button class="btn" id="btnFlip">Flip</button>
+        <button class="btn primary" id="btnHint">Hint</button>
+      </div>
+    </footer>
+  </div>
+
+  <div class="overlay" id="promoOverlay">
+    <div class="sheet">
+      <h2>Promote pawn</h2>
+      <div class="choices" id="promoChoices"></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="settingsOverlay">
+    <div class="sheet">
+      <h2>Game settings</h2>
+      <div class="field">
+        <label for="mode">Mode</label>
+        <select id="mode">
+          <option value="ai-black">You (White) vs Computer</option>
+          <option value="ai-white">You (Black) vs Computer</option>
+          <option value="human">Two players on this iPad</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="level">Computer strength</label>
+        <select id="level">
+          <option value="1">Easy</option>
+          <option value="2" selected>Medium</option>
+          <option value="3">Hard</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="coords">Coordinates</label>
+        <input id="coords" type="checkbox" checked />
+      </div>
+      <div class="field">
+        <label for="haptics">Haptics</label>
+        <input id="haptics" type="checkbox" checked />
+      </div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <button class="btn" id="btnCloseSettings" style="flex:1">Done</button>
+        <button class="btn primary" id="btnApplyNew" style="flex:1">New game</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="gameOverOverlay">
+    <div class="sheet">
+      <h2 id="gameOverTitle">Game over</h2>
+      <p id="gameOverSub" class="status" style="white-space:normal;margin:0 0 14px"></p>
+      <div style="display:flex;gap:8px">
+        <button class="btn" id="btnCloseOver" style="flex:1">Close</button>
+        <button class="btn primary" id="btnPlayAgain" style="flex:1">Play again</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/chess.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/ux.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
